@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Une surprise pour toi ❤️</title>
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: Georgia, serif;
+  background: radial-gradient(circle, #287b5a, #082e25);
+  color: white;
+}
+
+.confetti {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.confetti span {
+  position: absolute;
+  top: -30px;
+  left: var(--x);
+  font-size: var(--s);
+  animation: fall var(--d) linear infinite;
+  animation-delay: var(--delay);
+}
+
+@keyframes fall {
+  to { transform: translateY(110vh) rotate(720deg); }
+}
+
+.card {
+  width: min(90%, 520px);
+  padding: 24px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  animation: appear 1.2s ease-out;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: scale(.8) translateY(30px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+h1 {
+  font-size: clamp(34px, 9vw, 54px);
+  color: #ffe9a8;
+  text-shadow: 0 3px 15px #0008;
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  font-size: 20px;
+  margin-bottom: 28px;
+}
+
+.banknote {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  border: 5px double #f3d68b;
+  border-radius: 15px;
+  background:
+    radial-gradient(ellipse at center, #d6edb2, transparent 65%),
+    linear-gradient(135deg, #b8dca1, #e5e7a9, #8cbd8c);
+  color: #315c3b;
+  box-shadow: 0 15px 40px #0007;
+  transform: rotate(-4deg);
+  animation: float 4s ease-in-out infinite;
+  overflow: hidden;
+}
+
+@keyframes float {
+  50% { transform: rotate(3deg) translateY(-10px); }
+}
+
+.banknote:before {
+  content: "100";
+  position: absolute;
+  right: 12px;
+  top: 0;
+  font-size: 70px;
+  font-weight: bold;
+  opacity: .8;
+}
+
+.banknote:after {
+  content: "EURO";
+  position: absolute;
+  left: 20px;
+  bottom: 8px;
+  font-size: 24px;
+  letter-spacing: 8px;
+}
+
+.note-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+.note-center strong {
+  font-size: clamp(45px, 12vw, 75px);
+  letter-spacing: 0;
+}
+
+.message {
+  margin-top: 40px;
+  font-size: 21px;
+  line-height: 1.5;
+}
+
+.heart {
+  display: inline-block;
+  color: #ffb3b3;
+  font-size: 35px;
+  animation: beat 1s infinite;
+}
+
+@keyframes beat {
+  50% { transform: scale(1.3); }
+}
+</style>
+</head>
+<body>
+
+<div class="confetti" id="confetti"></div>
+
+<main class="card">
+  <div style="font-size:42px">🎉 🎂 🎉</div>
+
+  <h1>Bon Anniversaire<br>mon Coquinou !</h1>
+
+  <div class="subtitle">
+    Aujourd'hui, c'est ton jour ! 🥳
+  </div>
+
+  <div class="banknote">
+    <div class="note-center">
+      <strong>100 €</strong>
+      UNE PETITE SURPRISE
+    </div>
+  </div>
+
+  <div class="message">
+    Parce que tu le vaux bien !<br>
+    Profite bien de ta journée !
+    <div class="heart">♥</div>
+  </div>
+</main>
+
+<script>
+const container = document.getElementById('confetti');
+const emojis = ['🎉','✨','🎊','💶','⭐','🥳'];
+
+for (let i = 0; i < 45; i++) {
+  const item = document.createElement('span');
+  item.textContent = emojis[i % emojis.length];
+  item.style.setProperty('--x', Math.random() * 100 + '%');
+  item.style.setProperty('--s', (15 + Math.random() * 18) + 'px');
+  item.style.setProperty('--d', (5 + Math.random() * 8) + 's');
+  item.style.setProperty('--delay', (-Math.random() * 10) + 's');
+  container.appendChild(item);
+}
+</script>
+
+</body>
+</html>
